@@ -1,0 +1,34 @@
+[project]
+name = "crane-bench"
+version = "0.1.0"
+description = "Framework for building benchmarks to evaluate the performance of foundation models of neural data."
+readme = "README.md"
+authors = [ { name = "Alexander Brady"}]
+requires-python = ">=3.13"
+dependencies = [
+    "crane",
+    "torch>=2.11.0",
+]
+
+[build-system]
+requires = ["setuptools>=61.0", "setuptools-scm>=8", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[dependency-groups]
+dev = [
+    "ruff>=0.15.10",
+]
+
+[tool.ruff]
+target-version = "py312"
+line-length = 120
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]  # basics: style, flakes, isort, pyupgrade, bugbear
+ignore = ["E501", "F722"]            # let the formatter handle wrapping, jaxtyping support
+
+[tool.ruff.lint.isort]
+known-first-party = ["crane_bench"]
+
+[tool.uv.sources]
+crane = { git = "https://github.com/insight-neuro/crane" }
